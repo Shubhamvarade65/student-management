@@ -5,10 +5,10 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: student_management
-      MYSQL_ROOT_PASSWORD: studentmanagement
-      MYSQL_USER: root
-      MYSQL_PASSWORD: studentmanagement
+      MYSQL_DATABASE: "student_management"
+      MYSQL_ROOT_PASSWORD: "studentmanagement"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "studentmanagement"
     ports:
       - "3306:3306"
 
