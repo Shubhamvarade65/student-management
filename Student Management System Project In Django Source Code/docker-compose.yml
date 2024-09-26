@@ -18,8 +18,8 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8001"
+      - "8001:8001"
     depends_on:
       - db
     environment:
-      DATABASE_URL: mysql://root:studentmanagement@db:3306/ student_management
+      DATABASE_URL: mysql://root:studentmanagement@db:3306/student_management
