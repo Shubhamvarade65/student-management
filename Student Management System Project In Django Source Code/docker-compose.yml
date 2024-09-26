@@ -22,4 +22,4 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: mysql://your_username:your_password@db:3306/ student_management
+      DATABASE_URL: mysql://root:studentmanagement@db:3306/ student_management
