@@ -77,7 +77,7 @@ DATABASES = {
         'NAME': 'student_management',  # your database name
         'USER': 'root',                # your MySQL username
         'PASSWORD': 'studentmanagement',   # your MySQL password
-        'HOST': 'localhost',           # or '127.0.0.1'
+        'HOST': 'db',           # or '127.0.0.1'
         'PORT': '3306',                # default MySQL port
     }
 }
