@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: student_management
+      MYSQL_ROOT_PASSWORD: studentmanagement
+      MYSQL_USER: root
+      MYSQL_PASSWORD: studentmanagement
+    ports:
+      - "3306:3306"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8001
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8001"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: mysql://your_username:your_password@db:3306/ student_management
