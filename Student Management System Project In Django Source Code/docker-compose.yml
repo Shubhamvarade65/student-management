@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: mysql:5.7
@@ -11,15 +9,21 @@ services:
       MYSQL_PASSWORD: "studentmanagement"
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8001
+    command: sh -c "./wait-for-it.sh db:3306 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8001"
     volumes:
       - .:/app
     ports:
       - "8001:8001"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      DATABASE_URL: mysql://root:studentmanagement@db:3306/ student_management
+      DATABASE_URL: mysql://root:studentmanagement@db:3306/student_management
