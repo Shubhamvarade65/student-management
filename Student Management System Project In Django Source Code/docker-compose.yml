@@ -1,3 +1,5 @@
+version: '3.8'  # Specify the Docker Compose version
+
 services:
   db:
     image: mysql:5.7
@@ -14,10 +16,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - app-network
 
   web:
     build: .
-    command: sh -c "./wait-for-it.sh db:3306 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8001"
+    command: >
+      sh -c "./wait-for-it.sh db:3306 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8001"
     volumes:
       - .:/app
     ports:
@@ -26,4 +31,11 @@ services:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: mysql://root:studentmanagement@db:3306/student_management
+      DATABASE_URL: "mysql://root:studentmanagement@db:3306/student_management"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: app-network
+
