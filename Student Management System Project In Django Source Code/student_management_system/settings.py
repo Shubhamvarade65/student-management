@@ -74,9 +74,9 @@ DATABASES = {
     # }
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'student_management',  # your database name
+        'NAME': 'AWSDB',  # your database name
         'USER': 'root',                # your MySQL username
-        'PASSWORD': 'studentmanagement',   # your MySQL password
+        'PASSWORD': 'aws@12345',   # your MySQL password
         'HOST': 'localhost',           # or '127.0.0.1'
         'PORT': '3306',                # default MySQL port
     }
